@@ -10,6 +10,7 @@ class StudentCard extends StatelessWidget {
   final String address;
   final String course;
   final bool accStatus;
+  final String id;
   const StudentCard({
     Key? key,
     required this.address,
@@ -20,18 +21,26 @@ class StudentCard extends StatelessWidget {
     required this.nationality,
     required this.course,
     required this.accStatus,
+    required this.id,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       padding: const EdgeInsets.symmetric(horizontal: 10),
       height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(5.0),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0xff000000).withOpacity(0.16),
+            blurRadius: 6.0,
+            offset: Offset(0.0, 3.0),
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,7 +102,7 @@ class StudentCard extends StatelessWidget {
           Flexible(
             child: Container(
               width: 120,
-              alignment: Alignment.center,
+              alignment: Alignment.centerRight,
               child: Text(
                 course,
                 style: kBodyTextStyle,
@@ -104,7 +113,7 @@ class StudentCard extends StatelessWidget {
           Flexible(
             child: Container(
               width: 120,
-              alignment: Alignment.center,
+              alignment: Alignment.centerRight,
               child: Text(
                 phoneNumber,
                 style: kBodyTextStyle,
@@ -115,7 +124,7 @@ class StudentCard extends StatelessWidget {
           Flexible(
             child: Container(
               width: 120,
-              alignment: Alignment.center,
+              alignment: Alignment.centerRight,
               child: Text(
                 address,
                 style: kBodyTextStyle,

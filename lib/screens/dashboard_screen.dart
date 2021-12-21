@@ -89,6 +89,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                           ],
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           height: 300,
                           child: ListView.builder(
@@ -101,8 +104,71 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               nationality: allStudents[index].nationality,
                               phoneNumber: allStudents[index].phoneNumber,
                               accStatus: allStudents[index].accStatus,
+                              id: allStudents[index].password,
                             ),
                             itemCount: allStudents.length,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Recent Notices',
+                              style: kTitleTextStyle,
+                            ),
+                            Text(
+                              'See All',
+                              style: kSubTitleTextStyleWhite.copyWith(
+                                color: kPrimaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          height: 100,
+                          child: ListView.builder(
+                            itemBuilder: (context, index) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              height: 100,
+                              width: 180,
+                              decoration: BoxDecoration(
+                                color: kSecondaryColor.withOpacity(.8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0xff000000).withOpacity(0.16),
+                                    blurRadius: 6.0,
+                                    offset: Offset(0.0, 3.0),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                Provider.of<Notifications>(context,
+                                        listen: false)
+                                    .newNotifications[index]
+                                    .message,
+                                style: kBodyTextStyle.copyWith(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            shrinkWrap: true,
+                            itemCount: 4,
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
                           ),
                         ),
                       ],
@@ -129,11 +195,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       Container(
                         height: 480,
                         child: pendingStudentsData.isEmpty
-                            ? const Center(
-                                child: Text(
-                                  'There are no pending accounts',
-                                  textAlign: TextAlign.center,
-                                  style: kBodyTextStyle,
+                            ? Container(
+                                width: 200,
+                                child: const Center(
+                                  child: Text(
+                                    'There are no pending accounts',
+                                    textAlign: TextAlign.center,
+                                    style: kBodyTextStyle,
+                                  ),
                                 ),
                               )
                             : ListView.builder(
