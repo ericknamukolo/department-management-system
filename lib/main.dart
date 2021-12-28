@@ -3,14 +3,13 @@ import 'package:department_management/providers/notifications.dart';
 import 'package:department_management/providers/students.dart';
 import 'package:department_management/screens/home.dart';
 import 'package:department_management/screens/loading_screen.dart';
+import 'package:department_management/screens/log_in_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    const DepartmentManagement()
-  );
+  runApp(const DepartmentManagement());
 }
 
 class DepartmentManagement extends StatelessWidget {
@@ -35,7 +34,7 @@ class DepartmentManagement extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Poppins',
         ),
-        home: const LoadingScreen(),
+        home: const LogInScreen(),
       ),
     );
   }
