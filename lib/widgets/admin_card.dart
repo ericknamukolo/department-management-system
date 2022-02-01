@@ -12,40 +12,43 @@ class AdminCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 20),
-      height: 200,
-      width: 180,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xff000000).withOpacity(0.16),
-            blurRadius: 6.0,
-            offset: const Offset(0.0, 3.0),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Icon(
-            Icons.verified_user_rounded,
-            size: 90,
-            color: kPrimaryColor,
-          ),
-          Text(
-            adminName,
-            style: kTitleTextStyle.copyWith(
-                fontSize: 15, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            title,
-            style: kBodyTextStyle.copyWith(
-                fontSize: 14, fontWeight: FontWeight.bold),
-          ),
-        ],
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: Container(
+        margin: const EdgeInsets.only(right: 20),
+        height: 200,
+        width: 180,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xff000000).withOpacity(0.16),
+              blurRadius: 6.0,
+              offset: const Offset(0.0, 3.0),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Icon(
+              Icons.verified_user_rounded,
+              size: 90,
+              color: kPrimaryColor,
+            ),
+            Text(
+              adminName,
+              style: kTitleTextStyle.copyWith(
+                  fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              title,
+              style: kBodyTextStyle.copyWith(
+                  fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
     );
   }

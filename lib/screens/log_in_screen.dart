@@ -58,6 +58,7 @@ class _LogInScreenState extends State<LogInScreen> {
       setState(() {
         _isLoading = true;
       });
+      print(_otp.text);
       await Provider.of<Students>(context, listen: false).sendOtp(_otp.text);
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -191,7 +192,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           _showOtpField
                               ? InputField(
                                   hint: 'Otp number',
-                                  data: _email,
+                                  data: _otp,
                                 )
                               : Column(
                                   children: [

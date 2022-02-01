@@ -131,13 +131,12 @@ class Students with ChangeNotifier {
     );
     var data = json.decode(response.body);
     print(data);
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
+    if (data['sucesse'] == true) {
       token = data['token'];
       firstname = data['data']['firstName'];
       lastname = data['data']['lastName'];
     } else {
-      throw Exception('Incorrect OTP!');
+      throw Exception('incorrect pin');
     }
   }
 }
