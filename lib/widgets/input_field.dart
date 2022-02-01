@@ -3,22 +3,19 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
   final String hint;
-  const InputField({
-    Key? key,
-    required this.hint,
-  }) : super(key: key);
+  final TextEditingController data;
+  const InputField({Key? key, required this.hint, required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: kBodyTextStyle.copyWith(
-        color: Colors.white,
-      ),
+      controller: data,
+      style: kBodyTextStyle,
       decoration: InputDecoration(
         filled: true,
         hintText: hint,
         hintStyle: kHintTextStyle,
-        fillColor: const Color(0xff25262a),
         border: InputBorder.none,
       ),
     );

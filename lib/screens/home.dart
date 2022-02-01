@@ -1,10 +1,12 @@
 import 'package:department_management/constants/text_constants.dart';
+import 'package:department_management/providers/students.dart';
 import 'package:department_management/screens/dashboard_screen.dart';
 import 'package:department_management/screens/notice_screen.dart';
 import 'package:department_management/screens/result_screen.dart';
 import 'package:department_management/screens/students_screen.dart';
 import 'package:department_management/widgets/nav_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,6 +18,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final firstName = Provider.of<Students>(context, listen: false).firstname;
+    final lastname = Provider.of<Students>(context, listen: false).lastname;
     int pageIndex = 0;
     final PageController _pageController =
         PageController(initialPage: pageIndex);
@@ -38,6 +42,21 @@ class _HomeState extends State<Home> {
                       style: kTitleTextStyle.copyWith(fontSize: 30),
                     ),
                   ),
+                  const Icon(
+                    Icons.verified_user_rounded,
+                    size: 80,
+                    color: kPrimaryColor,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    '$firstName $lastname',
+                    style: kBodyTextStyle.copyWith(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Divider(),
+                  const SizedBox(height: 10),
                   NavButton(
                     icon: Icons.dashboard_rounded,
                     text: 'Dashboard',

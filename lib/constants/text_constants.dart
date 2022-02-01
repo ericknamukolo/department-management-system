@@ -40,10 +40,10 @@ const kSubTitleTextStyleDark = TextStyle(
 
 const kBodyTextStyle = TextStyle(
   color: Color(0xff60646F),
-  fontSize: 16,
+  fontSize: 14,
 );
 
 const kHintTextStyle = TextStyle(
   color: Colors.grey,
-  fontSize: 16,
+  fontSize: 14,
 );

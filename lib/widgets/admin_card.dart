@@ -2,8 +2,12 @@ import 'package:department_management/constants/text_constants.dart';
 import 'package:flutter/material.dart';
 
 class AdminCard extends StatelessWidget {
+  final String adminName;
+  final String title;
   const AdminCard({
     Key? key,
+    required this.adminName,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -11,7 +15,7 @@ class AdminCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(right: 20),
       height: 200,
-      width: 150,
+      width: 180,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8.0),
@@ -26,23 +30,20 @@ class AdminCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            height: 90,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage('assets/pic.jpg'), fit: BoxFit.cover),
-            ),
+          const Icon(
+            Icons.verified_user_rounded,
+            size: 90,
+            color: kPrimaryColor,
           ),
           Text(
-            'Mr Sivubwa',
+            adminName,
             style: kTitleTextStyle.copyWith(
-                fontSize: 16, fontWeight: FontWeight.normal),
+                fontSize: 15, fontWeight: FontWeight.bold),
           ),
           Text(
-            'HOD',
+            title,
             style: kBodyTextStyle.copyWith(
-                fontSize: 14, fontWeight: FontWeight.normal),
+                fontSize: 14, fontWeight: FontWeight.bold),
           ),
         ],
       ),

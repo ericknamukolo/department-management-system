@@ -3,10 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InN0dWRlbnRJZCI6IjE3MjExMDU1MDExIiwiZW1haWwiOiJlcmlja25hbXVvbG8xQGdtYWlsLmNvbSIsInVzZXJyb2xhIjpudWxsfSwiaWF0IjoxNjM0MzEzMTAzfQ.vQYTODGUOTUN6CA7OgZiwePO4Rqjfsm2Z9660oaczOE';
+String? token;
+String? otp;
 
 class Students with ChangeNotifier {
+  var firstname;
+  var lastname;
   List<Student> _students = [];
   List<Student> get students {
     return [..._students];
@@ -76,5 +78,66 @@ class Students with ChangeNotifier {
     );
     print(response.body);
     notifyListeners();
+  }
+
+  Future<void> adminAuth(String email, String password) async {
+    // Future<void> adminAuth() async {
+    var url =
+        'https://depatment-management-system.herokuapp.com/api/v1/dmi/admin/login';
+    var response = await http.post(
+      Uri.parse(url),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: json.encode(
+        {
+          "email": email,
+          "password": password,
+        },
+      ),
+    );
+    print(json.decode(response.body));
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      token = data['token'];
+      otp = data['otp'];
+      // firstname = data['data']['firstName'];
+      // lastname = data['data']['lastName'];
+    } else {
+      throw Exception('Email or Password is incorrect');
+    }
+
+    notifyListeners();
+  }
+
+  Future<void> sendOtp(String userOtp) async {
+    var url =
+        'https://depatment-management-system.herokuapp.com/api/v1/dmi/admin/admin-otp';
+    var response = await http.post(
+      Uri.parse(url),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: json.encode(
+        {
+          "otp": userOtp,
+        },
+      ),
+    );
+    var data = json.decode(response.body);
+    print(data);
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      token = data['token'];
+      firstname = data['data']['firstName'];
+      lastname = data['data']['lastName'];
+    } else {
+      throw Exception('Incorrect OTP!');
+    }
   }
 }
