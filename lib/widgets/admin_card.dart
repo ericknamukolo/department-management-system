@@ -1,4 +1,6 @@
 import 'package:department_management/constants/text_constants.dart';
+import 'package:department_management/screens/home.dart';
+import 'package:department_management/screens/loading_screen.dart';
 import 'package:flutter/material.dart';
 
 class AdminCard extends StatelessWidget {
@@ -13,6 +15,10 @@ class AdminCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
+      // onEnter: (event) {
+      //   Navigator.of(context)
+      //       .push(MaterialPageRoute(builder: (context) => LoadingScreen()));
+      // },
       cursor: SystemMouseCursors.click,
       child: Container(
         margin: const EdgeInsets.only(right: 20),
